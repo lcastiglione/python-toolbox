@@ -102,6 +102,7 @@ def write_json_file(path: str, data: dict, encoding: str = 'utf-8') -> None:
     Args:
         path (str): La ruta del archivo JSON.
         data (dict): El diccionario a escribir en el archivo.
+        encoding (str, optional): Encoding de los datos. Por default está en 'utf-8'.
     """
     with open(path, 'w', encoding=encoding) as file:
         json.dump(data, file, ensure_ascii=False, default=str)
@@ -113,6 +114,7 @@ def read_json_file(path: str, encoding: str = 'utf-8') -> dict:
 
     Args:
         path (str): La ruta del archivo JSON.
+        encoding (str, optional): Encoding de los datos. Por default está en 'utf-8'.
 
     Returns:
         dict: El contenido del archivo JSON como un diccionario.
@@ -120,6 +122,33 @@ def read_json_file(path: str, encoding: str = 'utf-8') -> dict:
     with open(path, encoding=encoding) as file:
         return json.loads(file.read())
 
+def write_file(path:str, data:str,encoding: str = 'utf-8',method:str="w") -> None:
+    """Escribe un archivo de texto con la posibilidad de agregar contenido a un archivo existente.
+
+    Args:
+        path (str): La ruta del archivo JSON.
+        data (str): Datos a escribir
+        encoding (str, optional): Encoding de los datos. Por default está en 'utf-8'.
+        method (str, optional): Método de escritura. Con 'w' es escribe todo de cero y con 'a' se
+        agrega contenido al que ya está. Por default está en "w".
+    """
+    with open(path, method, encoding=encoding) as outfile:
+        outfile.write(data)
+
+
+def read_file(path:str, encoding: str = 'utf-8') -> str:
+    """
+    Lee un archivo de texto y devuelve su contenido.
+
+    Args:
+        path (str): La ruta del archivo de texto.
+        encoding (str, optional): Encoding de los datos. Por default está en 'utf-8'.
+
+    Returns:
+        dict: El contenido del archivo de texto.
+    """
+    with open(path, encoding=encoding) as file:
+        return file.read()
 
 def is_file_exist(path: str, encoding: str = 'utf-8') -> bool:
     """
