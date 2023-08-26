@@ -3,7 +3,6 @@
 import string
 import random
 import sys
-import re
 import json
 import base64
 from typing import List
@@ -12,7 +11,7 @@ from io import BytesIO
 from zipfile import ZipFile, ZIP_DEFLATED
 
 
-def remove_special_characters(text: str, special_chars: List[str]=None) -> str:
+def remove_special_characters(text: str, special_chars: List[str] = None) -> str:
     """
     Remueve caracteres especiales de un texto.
 
@@ -29,6 +28,7 @@ def remove_special_characters(text: str, special_chars: List[str]=None) -> str:
         text = text.replace(char, '')
     return text
 
+
 def remove_residual_chars(txt: str) -> str:
     """
     Elimina caracteres residuales de una cadena de texto.
@@ -39,7 +39,8 @@ def remove_residual_chars(txt: str) -> str:
     Returns:
         str: La cadena de texto sin caracteres residuales.
     """
-    return remove_special_characters(txt,['\r','\n','\t',' '])
+    return remove_special_characters(txt, ['\r', '\n', '\t', ' '])
+
 
 def get_size(obj: object, seen: set = None) -> int:
     """
@@ -122,7 +123,8 @@ def read_json_file(path: str, encoding: str = 'utf-8') -> dict:
     with open(path, encoding=encoding) as file:
         return json.loads(file.read())
 
-def write_file(path:str, data:str,encoding: str = 'utf-8',method:str="w") -> None:
+
+def write_file(path: str, data: str, encoding: str = 'utf-8', method: str = "w") -> None:
     """Escribe un archivo de texto con la posibilidad de agregar contenido a un archivo existente.
 
     Args:
@@ -136,7 +138,7 @@ def write_file(path:str, data:str,encoding: str = 'utf-8',method:str="w") -> Non
         outfile.write(data)
 
 
-def read_file(path:str, encoding: str = 'utf-8') -> str:
+def read_file(path: str, encoding: str = 'utf-8') -> str:
     """
     Lee un archivo de texto y devuelve su contenido.
 
@@ -149,6 +151,7 @@ def read_file(path:str, encoding: str = 'utf-8') -> str:
     """
     with open(path, encoding=encoding) as file:
         return file.read()
+
 
 def is_file_exist(path: str, encoding: str = 'utf-8') -> bool:
     """
